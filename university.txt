@@ -1,0 +1,75 @@
+1.
+SELECT *
+FROM `students`
+WHERE YEAR(`date_of_birth`) = 1990;
+
+2.
+SELECT *
+FROM `courses`
+WHERE `cfu` > 10;
+
+3.
+SELECT *
+FROM `students`
+WHERE YEAR(CURDATE()) - YEAR(`date_of_birth`) > 30;
+
+4.
+SELECT *
+FROM `courses`
+WHERE `period` = 'I semestre'
+AND `year` = 1;
+
+5.
+SELECT *
+FROM `exams`
+WHERE HOUR(`hour`) >= 14
+AND `date` = '2020-06-20'; 
+
+6.
+SELECT *
+FROM `degrees`
+WHERE `level` = 'magistrale'
+
+7.
+SELECT COUNT(*) AS `numero_dipartimenti`
+FROM `departments`;
+
+8.
+SELECT COUNT(*) AS `insegnanti_senza_numero_di_telefono`
+FROM `teachers`
+WHERE `phone` IS NULL;
+
+9.
+INSERT INTO `students` (`degree_id`, `name`, `surname`, `date_of_birth`, `fiscal_code`, `enrolment_date`, `registration_number`, `email`)
+VALUES ( 1, 'Luca', 'Martinetti', '1999-02-19', 'MRTLCU99BF205E', '2025-02-03', 9999600, 'luca.martinetti@outlook.it');
+
+10.
+UPDATE `teachers`
+SET `office_number` = 126
+WHERE `id` = 58;
+
+11.
+DELETE FROM `students` 
+WHERE `id` = 5003;
+
+Query con GROUP BY
+
+1. 
+SELECT COUNT(*) AS `numero_iscritti`, YEAR(`enrolment_date`) AS `anno_iscrizione`
+FROM `students`
+GROUP BY `anno_iscrizione`;
+
+2. 
+SELECT COUNT(*) AS `insegnanti`, `office_address` AS `ufficio`
+FROM `teachers`
+GROUP BY `ufficio`;
+
+3.
+SELECT AVG(`vote`) AS `media_voti`, `exam_id` 
+FROM `exam_student`
+GROUP BY `exam_id`;
+
+4.
+SELECT COUNT(*) AS `numero_corsi_di_laurea`, `department_id` AS `dipartimento`
+FROM `degrees`
+GROUP BY `dipartimento`;
